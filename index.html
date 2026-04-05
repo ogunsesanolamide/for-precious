@@ -130,12 +130,6 @@ body {
 }
 .music-btn:hover { background:var(--gold); color:var(--bg); }
 .music-btn.playing { background:var(--gold); color:var(--bg); }
-.music-player {
-  position:fixed; top:3.2rem; right:1.2rem; z-index:200;
-  display:none; border-radius:10px; overflow:hidden;
-  box-shadow:0 4px 25px rgba(0,0,0,0.6); border:1px solid var(--border);
-}
-.music-player.visible { display:block; }
 
 .counter { position:fixed; bottom:1.2rem; right:1.2rem; background:var(--bg-card); border:1px solid var(--border); color:var(--gold); font-family:'Playfair Display',serif; padding:0.4rem 0.9rem; border-radius:50px; font-size:0.75rem; z-index:100; box-shadow:0 4px 20px rgba(0,0,0,0.5); opacity:0; transition:opacity 0.3s; }
 .counter.visible { opacity:1; }
@@ -150,9 +144,9 @@ body {
 
 <!-- BACKGROUND MUSIC PLAYER -->
 <div id="music-btn" class="music-btn" onclick="toggleMusic()">&#9835; Play Music</div>
-<div id="music-player" class="music-player">
-  <iframe id="bg-music" width="250" height="52" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border-radius:8px;"></iframe>
-</div>
+<audio id="bg-music" loop preload="auto">
+  <source src="music/lmly.webm" type="audio/webm">
+</audio>
 
 <div class="counter" id="counter">Reason 1 of 31</div>
 
@@ -560,19 +554,15 @@ body {
 let musicPlaying = false;
 const musicBtn = document.getElementById('music-btn');
 const bgMusic = document.getElementById('bg-music');
-const musicPlayer = document.getElementById('music-player');
-const musicSrc = 'https://www.youtube-nocookie.com/embed/p5UU_4oee5w?si=dIUN-YBznRmX7Wdv&autoplay=1&loop=1';
 
 function toggleMusic() {
   if (!musicPlaying) {
-    bgMusic.src = musicSrc;
-    musicPlayer.classList.add('visible');
-    musicBtn.innerHTML = '&#9835; Hide Player';
+    bgMusic.play();
+    musicBtn.innerHTML = '&#9835; Pause';
     musicBtn.classList.add('playing');
     musicPlaying = true;
   } else {
-    bgMusic.src = '';
-    musicPlayer.classList.remove('visible');
+    bgMusic.pause();
     musicBtn.innerHTML = '&#9835; Play Music';
     musicBtn.classList.remove('playing');
     musicPlaying = false;
