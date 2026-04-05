@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>31 Reasons — For Precious</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Lora:ital,wght@0,400;0,600;1,400&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #c9a84c;
+  --gold-light: #f5e6b8;
+  --gold-dim: rgba(201,168,76,0.15);
+  --rose: #e8a0bf;
+  --rose-deep: #c2185b;
+  --bg: #0d0d0d;
+  --bg-card: #161616;
+  --bg-elevated: #1a1a1a;
+  --bg-section: #111111;
+  --text: #e8e0d4;
+  --text-dim: #9a9088;
+  --wine: #a3465a;
+  --border: rgba(201,168,76,0.12);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; font-size:16px; }
+body {
+  font-family:'Lora',Georgia,serif;
+  color:var(--text);
+  background:var(--bg);
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ── HERO ── */
+.hero {
+  min-height:100vh;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center; background:var(--bg); position:relative; overflow:hidden; padding:2rem;
+}
+.hero::before {
+  content:''; position:absolute; width:300%; height:300%; top:-100%; left:-100%;
+  background: radial-gradient(circle at 30% 40%,rgba(201,168,76,0.06) 0%,transparent 50%),
+              radial-gradient(circle at 70% 60%,rgba(232,160,191,0.04) 0%,transparent 50%);
+  animation:shimmer 20s ease-in-out infinite alternate;
+}
+@keyframes shimmer { 0%{transform:translate(0,0) rotate(0deg)} 100%{transform:translate(-3%,-3%) rotate(2deg)} }
+.hero h1 { font-family:'Dancing Script',cursive; font-size:clamp(2.5rem,8vw,5rem); color:var(--gold); margin-bottom:0.5rem; position:relative; z-index:1; animation:fadeUp 1.5s ease-out; }
+.hero .subtitle { font-family:'Playfair Display',serif; font-size:clamp(0.95rem,2.8vw,1.35rem); font-style:italic; color:var(--text-dim); margin-bottom:0.5rem; position:relative; z-index:1; animation:fadeUp 1.5s ease-out 0.3s both; }
+.hero .date-badge { display:inline-block; border:1.5px solid var(--gold); border-radius:50px; padding:0.6rem 1.8rem; font-family:'Playfair Display',serif; font-size:0.85rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); position:relative; z-index:1; animation:fadeUp 1.5s ease-out 0.6s both; margin-top:1rem; }
+.hero .scroll-hint { position:absolute; bottom:2rem; font-size:0.8rem; letter-spacing:0.12em; color:var(--text-dim); opacity:0.4; animation:bounce 2s ease-in-out infinite; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+@keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+
+/* ── PHOTO GRID ── */
+.photo-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:3px; }
+.photo-grid img { width:100%; aspect-ratio:3/4; object-fit:cover; display:block; filter:brightness(0.9); transition:filter 0.3s,transform 0.3s; }
+.photo-grid img:hover { filter:brightness(1.05); transform:scale(1.02); z-index:2; position:relative; }
+
+/* ── SECTION ── */
+.section { padding:4rem 1.5rem; max-width:720px; margin:0 auto; }
+.section-label { font-family:'Dancing Script',cursive; font-size:1rem; text-align:center; color:var(--gold); margin-bottom:0.3rem; letter-spacing:0.1em; }
+.section-title { font-family:'Playfair Display',serif; font-size:clamp(1.6rem,5vw,2.5rem); text-align:center; color:var(--gold-light); margin-bottom:2.5rem; }
+
+/* ── REASON CARDS ── */
+.reason-card { background:var(--bg-card); border:1px solid var(--border); border-radius:12px; padding:1.8rem 1.5rem; margin-bottom:1.2rem; position:relative; overflow:hidden; transition:border-color 0.3s; }
+.reason-card:hover { border-color:rgba(201,168,76,0.3); }
+.reason-card .reason-number { font-family:'Playfair Display',serif; font-size:2.5rem; font-weight:700; color:var(--gold); opacity:0.15; position:absolute; top:0.5rem; right:1rem; line-height:1; }
+.reason-card .reason-text { font-size:1.05rem; line-height:1.85; color:var(--text); position:relative; z-index:1; }
+
+/* ── FEATURED REASON ── */
+.reason-featured { display:grid; grid-template-columns:1fr 1fr; min-height:400px; overflow:hidden; }
+.reason-featured.reverse { direction:rtl; }
+.reason-featured.reverse > * { direction:ltr; }
+.reason-featured .featured-img { overflow:hidden; }
+.reason-featured .featured-img img { width:100%; height:100%; object-fit:cover; display:block; filter:brightness(0.85); }
+.reason-featured .featured-text { display:flex; flex-direction:column; justify-content:center; padding:2.5rem 2rem; background:var(--bg-elevated); }
+.reason-featured .featured-text .feat-num { font-family:'Dancing Script',cursive; font-size:1.2rem; color:var(--gold); margin-bottom:0.75rem; }
+.reason-featured .featured-text h3 { font-family:'Playfair Display',serif; font-size:1.5rem; color:var(--gold-light); margin-bottom:1rem; }
+.reason-featured .featured-text p { line-height:1.85; color:var(--text); font-size:1rem; }
+@media(max-width:650px){ .reason-featured{grid-template-columns:1fr} .reason-featured .featured-img{min-height:300px} .reason-featured.reverse{direction:ltr} }
+
+/* ── QUOTE STRIP ── */
+.quote-strip { background:var(--bg-section); border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:3.5rem 2rem; text-align:center; }
+.quote-strip blockquote { font-family:'Playfair Display',serif; font-size:clamp(1.1rem,3vw,1.6rem); font-style:italic; color:var(--gold-light); max-width:650px; margin:0 auto; line-height:1.9; }
+.quote-strip .attr { margin-top:1rem; font-family:'Lora',serif; font-size:0.85rem; color:var(--gold); font-style:normal; letter-spacing:0.1em; }
+
+/* ── POEM / MANIFESTO BLOCKS ── */
+.poem-block { background:var(--bg-card); border:1px solid var(--border); border-radius:12px; padding:2rem 2rem; margin-bottom:1.5rem; text-align:center; }
+.poem-block .poem-title { font-family:'Dancing Script',cursive; font-size:1.2rem; color:var(--gold); margin-bottom:1.2rem; }
+.poem-block p, .poem-block .poem-lines { line-height:2; color:var(--text); font-size:1rem; }
+.poem-block .poem-lines { font-style:italic; color:var(--text-dim); }
+
+/* ── LETTER ── */
+.letter-block { background:var(--bg-card); border:1px solid var(--border); border-radius:16px; max-width:620px; margin:3rem auto; padding:2.5rem 2rem; position:relative; }
+.letter-block::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--gold),var(--rose),var(--gold)); border-radius:16px 16px 0 0; }
+.letter-block .salutation { font-family:'Dancing Script',cursive; font-size:1.4rem; color:var(--gold); margin-bottom:1.2rem; }
+.letter-block p { line-height:2; margin-bottom:1rem; color:var(--text); }
+.letter-block .signature { font-family:'Dancing Script',cursive; font-size:1.6rem; color:var(--gold); margin-top:1.5rem; text-align:right; }
+
+/* ── VIDEO ── */
+.video-section { max-width:720px; margin:0 auto; padding:2rem 1.5rem; }
+.video-slot { background:var(--bg-card); border:1px solid var(--border); border-radius:12px; overflow:hidden; margin-bottom:1.5rem; }
+.video-slot video { width:100%; display:block; }
+.video-slot .video-caption { padding:1rem 1.5rem; font-style:italic; color:var(--text-dim); font-size:0.9rem; border-top:1px solid var(--border); }
+
+/* ── PLAYLIST ── */
+.playlist-section { max-width:550px; margin:2rem auto; padding:2rem 1.5rem; text-align:center; }
+.playlist-section .playlist-title { font-family:'Dancing Script',cursive; font-size:1.3rem; color:var(--gold); margin-bottom:1rem; }
+.playlist-placeholder { border:1.5px dashed var(--gold); border-radius:12px; padding:2rem; color:var(--text-dim); font-size:0.85rem; font-family:'Playfair Display',serif; }
+
+/* ── FINALE ── */
+.finale { min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:3rem 2rem; background:var(--bg); }
+.finale .heart { font-size:3rem; margin-bottom:1.5rem; animation:heartbeat 1.5s ease-in-out infinite; }
+@keyframes heartbeat { 0%,100%{transform:scale(1)} 15%{transform:scale(1.15)} 30%{transform:scale(1)} 45%{transform:scale(1.1)} }
+.finale h2 { font-family:'Dancing Script',cursive; font-size:clamp(2.2rem,7vw,4rem); color:var(--gold); margin-bottom:1rem; }
+.finale p { font-family:'Playfair Display',serif; font-size:clamp(1rem,2.5vw,1.3rem); font-style:italic; color:var(--text-dim); max-width:550px; line-height:2; margin-bottom:1.5rem; }
+.finale .sign-off { font-family:'Dancing Script',cursive; font-size:1.8rem; color:var(--gold); margin-top:2rem; }
+.finale .fine-print { font-size:0.75rem; color:var(--text-dim); opacity:0.4; margin-top:3rem; line-height:1.6; }
+
+/* ── COUNTER ── */
+/* ── MUSIC BUTTON ── */
+.music-btn {
+  position:fixed; top:1.2rem; right:1.2rem;
+  background:var(--bg-card); border:1px solid var(--gold); color:var(--gold);
+  font-family:'Playfair Display',serif; padding:0.5rem 1.2rem; border-radius:50px;
+  font-size:0.8rem; z-index:200; cursor:pointer;
+  box-shadow:0 4px 20px rgba(0,0,0,0.5); transition:all 0.3s;
+  letter-spacing:0.05em;
+}
+.music-btn:hover { background:var(--gold); color:var(--bg); }
+.music-btn.playing { background:var(--gold); color:var(--bg); }
+.music-player {
+  position:fixed; top:3.2rem; right:1.2rem; z-index:200;
+  display:none; border-radius:10px; overflow:hidden;
+  box-shadow:0 4px 25px rgba(0,0,0,0.6); border:1px solid var(--border);
+}
+.music-player.visible { display:block; }
+
+.counter { position:fixed; bottom:1.2rem; right:1.2rem; background:var(--bg-card); border:1px solid var(--border); color:var(--gold); font-family:'Playfair Display',serif; padding:0.4rem 0.9rem; border-radius:50px; font-size:0.75rem; z-index:100; box-shadow:0 4px 20px rgba(0,0,0,0.5); opacity:0; transition:opacity 0.3s; }
+.counter.visible { opacity:1; }
+
+/* ── MISC ── */
+.divider { text-align:center; padding:2rem 0; font-size:1rem; color:var(--gold); opacity:0.3; letter-spacing:0.5em; }
+.photo-break { width:100%; overflow:hidden; max-height:500px; }
+.photo-break img { width:100%; height:500px; object-fit:cover; display:block; filter:brightness(0.75); }
+</style>
+</head>
+<body>
+
+<!-- BACKGROUND MUSIC PLAYER -->
+<div id="music-btn" class="music-btn" onclick="toggleMusic()">&#9835; Play Music</div>
+<div id="music-player" class="music-player">
+  <iframe id="bg-music" width="250" height="52" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border-radius:8px;"></iframe>
+</div>
+
+<div class="counter" id="counter">Reason 1 of 31</div>
+
+<!-- ═══════════════════════ HERO ═══════════════════════ -->
+<section class="hero">
+  <h1>31 Reasons</h1>
+  <p class="subtitle">One for every day of the first month I chose you.</p>
+  <p class="subtitle" style="font-size:clamp(0.85rem,2vw,1rem); opacity:0.5; animation-delay:0.5s;">For Precious Oluwaseun, from Olamide.</p>
+  <span class="date-badge">7 March — 7 April 2026</span>
+  <p class="scroll-hint">scroll down</p>
+</section>
+
+<!-- ═══════════════════════ PHOTO GRID TOP ═══════════════════════ -->
+<div class="photo-grid">
+  <img src="photos/precious_16.jpeg" alt="Precious — mirror selfie, red top">
+  <img src="photos/precious_13.jpeg" alt="Precious — smiling at work">
+  <img src="photos/precious_14.jpeg" alt="Precious — top of the morning">
+  <img src="photos/precious_02.jpeg" alt="Precious — plaid shirt">
+</div>
+
+<!-- ═══════════════════════ REASONS 1–5 ═══════════════════════ -->
+<div class="section">
+  <p class="section-label">Part One</p>
+  <h2 class="section-title">Your Smile, Your Face, You</h2>
+
+  <div class="reason-card" data-reason="1">
+    <span class="reason-number">01</span>
+    <p class="reason-text">Your smile. The way it shows up before you even know it's there, rearranges my whole mood, and stays in my head longer than I planned for. I'd do anything to keep seeing it. I mean that in ways I'm still finding words for.</p>
+  </div>
+  <div class="reason-card" data-reason="2">
+    <span class="reason-number">02</span>
+    <p class="reason-text">Your face. The whole thing. Not just the forehead you keep showing me. Every feature, every expression, every angle — I notice. I notice everything, Precious.</p>
+  </div>
+  <div class="reason-card" data-reason="3">
+    <span class="reason-number">03</span>
+    <p class="reason-text">Your beauty makes me speak in tongues — and I meant every incoherent word. Na my babe dey hot. I stand by that. Permanently.</p>
+  </div>
+  <div class="reason-card" data-reason="4">
+    <span class="reason-number">04</span>
+    <p class="reason-text">Your voice. The texture of it. The warmth in it. How it sounds different when you're sleepy versus when you're excited — softer, slower, more honest — and I love both equally.</p>
+  </div>
+  <div class="reason-card" data-reason="5">
+    <span class="reason-number">05</span>
+    <p class="reason-text">Who you are. Your honesty, your loyalty, your stubbornness — I'll deny I said this, but I love it. Your intelligence. Your faith. The way you carry pressure without letting the world see you buckle. You are rare. And I mean that with my whole chest.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════ FEATURED #6 ═══════════════════════ -->
+<div class="reason-featured" data-reason="6">
+  <div class="featured-img"><img src="photos/precious_08.jpeg" alt="Precious smiling on FaceTime"></div>
+  <div class="featured-text">
+    <span class="feat-num">Reason #6</span>
+    <h3>The way you make me feel</h3>
+    <p>You make me feel chosen. Not settled for. Chosen. You make distance feel temporary, London feel warmer, and my overthinking quieter. You make me feel like it's okay to need someone. You make silence on a call feel like a full conversation. You make me feel like the best version of myself isn't forced — it's natural around you.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════ REASONS 7–10 ═══════════════════════ -->
+<div class="section">
+  <div class="reason-card" data-reason="7">
+    <span class="reason-number">07</span>
+    <p class="reason-text">Our conversations. How they flow without effort. The calls — even the morning and evening ones, especially the morning ones. How we discuss on WhatsApp, send snaps and whine on Snapchat, share reels on Instagram like it's a circle. How we send each other tweets and gist about them. The way we never actually say goodbye properly. We just keep talking until one person sleeps off.</p>
+  </div>
+  <div class="reason-card" data-reason="8">
+    <span class="reason-number">08</span>
+    <p class="reason-text">The inside jokes. "Yes, mom." The teaching on how to use Snapchat better. The arguments and how we resolve them — you're wrong, by the way, but I love that you fight for it. Chef O. The forehead photos and how you position your camera during video calls. When I fall asleep on the call. Every single bit of it.</p>
+  </div>
+  <div class="reason-card" data-reason="9">
+    <span class="reason-number">09</span>
+    <p class="reason-text">How you fall asleep on the phone and I don't hang up because the silence sounds like trust. And if you doze off mid-sentence, I'll just text you "HELLO!!!!!" and save my questions for the morning.</p>
+  </div>
+  <div class="reason-card" data-reason="10">
+    <span class="reason-number">10</span>
+    <p class="reason-text">Your laugh. Not the polite one. The real one that catches you off guard, throws your head back, and takes over your entire body. The one I can hear in my memory right now.</p>
+  </div>
+</div>
+
+<!-- PHOTO BREAK -->
+<div class="photo-break"><img src="photos/precious_09.jpeg" alt="Precious laughing on FaceTime"></div>
+
+<!-- ═══════════════════════ QUOTE ═══════════════════════ -->
+<div class="quote-strip">
+  <blockquote>"There is something about you that made me stop and pay attention. And the more I've paid attention, the more certain I've become."</blockquote>
+  <p class="attr">— Olamide, to Precious</p>
+</div>
+
+<!-- ═══════════════════════ POEM: BEING LOVED ═══════════════════════ -->
+<div class="section">
+  <div class="poem-block">
+    <p class="poem-title">I want you to be...</p>
+    <p class="poem-lines">
+      Not just enjoyed,<br>
+      but honored,<br>
+      respected,<br>
+      devoured,<br>
+      considered,<br>
+      prayed for,<br>
+      favored,<br>
+      remembered,<br>
+      prioritized,<br>
+      preferred,<br>
+      assured,<br>
+      validated,<br>
+      comforted,<br>
+      nurtured,<br>
+      catered to,<br>
+      protected,<br>
+      rallied for,<br>
+      supported,<br>
+      cared for,<br>
+      looked after,<br>
+      and loved.<br><br>
+      <em style="color:var(--gold);">Fully, proudly, gladly, loved.</em>
+    </p>
+  </div>
+</div>
+
+<!-- ═══════════════════════ REASONS 11–15 ═══════════════════════ -->
+<div class="section">
+  <p class="section-label">Part Two</p>
+  <h2 class="section-title">Why I Chose You</h2>
+
+  <div class="reason-card" data-reason="11">
+    <span class="reason-number">11</span>
+    <p class="reason-text">Because something about you made me stop scrolling, stop looking, stop searching. You're not just someone I like. You're someone I'd show up for. Someone I'd be patient for. Someone I'd cross distances for, rearrange things for, choose deliberately and consistently. Not out of desperation. Out of something that feels very much like knowing.</p>
+  </div>
+  <div class="reason-card" data-reason="12">
+    <span class="reason-number">12</span>
+    <p class="reason-text">Because you challenge me to grow without making me feel small. You make me want to be a better man without ever saying the words. The standard just rises when you're around.</p>
+  </div>
+  <div class="reason-card" data-reason="13">
+    <span class="reason-number">13</span>
+    <p class="reason-text">Because you love with intention. You don't half-love anything. You don't play games — you play for keeps. That's rare, and I don't take it lightly.</p>
+  </div>
+
+  <!-- POEM: THE TRUTH -->
+  <div class="poem-block">
+    <p class="poem-title">The truth?</p>
+    <p>I like you, a lot. More than I've liked anyone for a long time, and to be honest, it kinda scares me. I don't wanna screw up what we have, whatever it is. I've fallen pretty damn hard for you.</p>
+  </div>
+
+  <div class="reason-card" data-reason="14">
+    <span class="reason-number">14</span>
+    <p class="reason-text">Because loving you feels intentional, not accidental. It's made me more patient, more honest, more expressive. Words I used to swallow, I now say. You've turned me into someone who writes love letters. I didn't know I had this in me.</p>
+  </div>
+  <div class="reason-card" data-reason="15">
+    <span class="reason-number">15</span>
+    <p class="reason-text">Because every alternative to you feels like settling. You've set a standard I don't want met by anyone else. You're the reason I stopped looking.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════ FEATURED #16 ═══════════════════════ -->
+<div class="reason-featured reverse" data-reason="16">
+  <div class="featured-img"><img src="photos/precious_03.jpeg" alt="Precious at work, smiling"></div>
+  <div class="featured-text">
+    <span class="feat-num">Reason #16</span>
+    <h3>I notice</h3>
+    <p>I notice when you're tired but still make time for me. I notice when you choose your words carefully because you care about how they land. I notice your effort — every single bit of it. I notice when you keep me updated on where you are and what you're doing, and I want you to know: that means the world. I want more of it. Not as a rule — as a quiet way of saying I matter to you.</p>
+  </div>
+</div>
+
+<!-- PHOTO GRID MIDDLE -->
+<div class="photo-grid">
+  <img src="photos/precious_18.jpeg" alt="Precious — mirror selfie, blowing a kiss">
+  <img src="photos/precious_12.jpeg" alt="Precious — heart on nose">
+  <img src="photos/precious_17.jpeg" alt="Precious — collage of smiles">
+  <img src="photos/precious_15.jpeg" alt="Precious — chin on hand">
+</div>
+
+<!-- ═══════════════════════ REASONS 17–20 ═══════════════════════ -->
+<div class="section">
+  <div class="reason-card" data-reason="17">
+    <span class="reason-number">17</span>
+    <p class="reason-text">The little things I adore. How you'd rather sleep than cook. The way you roll your eyes at my jokes and laugh anyway. We don't do nonchalant here. And I love that about us.</p>
+  </div>
+
+  <!-- POEM: HAVE YOU EATEN -->
+  <div class="poem-block">
+    <p class="poem-title">The language of love</p>
+    <p class="poem-lines">
+      Have you eaten? <em style="color:var(--gold);">(I love you.)</em><br>
+      Did you get enough sleep last night? <em style="color:var(--gold);">(I love you.)</em><br>
+      How do you feel today? <em style="color:var(--gold);">(I love you.)</em><br>
+      Did you have a nice day? <em style="color:var(--gold);">(I love you.)</em><br>
+      Will you come on a walk with me? <em style="color:var(--gold);">(I love you.)</em><br>
+      Here's some fruit I cut up for you. <em style="color:var(--gold);">(I love you.) (I love you.) (I love you.)</em>
+    </p>
+  </div>
+
+  <div class="reason-card" data-reason="18">
+    <span class="reason-number">18</span>
+    <p class="reason-text">The way we stay up late at midnight to talk, hear each other's breath, gist and share tweets and reels and react to the wildest takes together, and somehow turn a Twitter thread into an hours-long conversation about life. You send me something with no context and I already know your commentary before you type it. That's not small talk. That's the beginning of a language only we speak.</p>
+  </div>
+  <div class="reason-card" data-reason="19">
+    <span class="reason-number">19</span>
+    <p class="reason-text">I want us to build a playlist that becomes the soundtrack of us. Press play on a song at the same time and not say a word because the music says it all. Every song will have a story. We're not there yet — but I already know it'll be beautiful when we are.</p>
+  </div>
+  <div class="reason-card" data-reason="20">
+    <span class="reason-number">20</span>
+    <p class="reason-text">I want to order the same meal and eat together on a video call. Cook the same recipe at the same time and argue about whose turned out better. Send you snacks from London just to see your face when you try them. Watch the same sunset from two different skies and still somehow feel like we're standing in the same place. And yes — I will drive you everywhere. But not crazy.</p>
+  </div>
+</div>
+
+<!-- PHOTO BREAK -->
+<div class="photo-break"><img src="photos/precious_07.jpeg" alt="Precious on FaceTime"></div>
+
+<!-- ═══════════════════════ POEM: CHOOSE ME ═══════════════════════ -->
+<div class="section">
+  <div class="poem-block">
+    <p class="poem-title">Choose me</p>
+    <p class="poem-lines">
+      Being chosen.<br>
+      Being considered.<br>
+      Being longed for.<br>
+      Being prioritized.<br>
+      Being valued.<br>
+      Being understood.<br>
+      Being reassured.<br>
+      Being respected.<br>
+      Being supported.<br>
+      Being intentionally loved.<br>
+      Being shown up for.<br>
+      Being made a habit, not an option.<br><br>
+      <em style="color:var(--gold);">Choose me every day, even on rainy days.</em>
+    </p>
+  </div>
+</div>
+
+<!-- ═══════════════════════ QUOTE ═══════════════════════ -->
+<div class="quote-strip">
+  <blockquote>"The purest form of love is simply wanting someone to experience life alongside you. 'Taste this, look at that, listen to this' — over and over, until you can't imagine going through life without them noticing it too."</blockquote>
+  <p class="attr">— Olamide, to Precious</p>
+</div>
+
+<!-- ═══════════════════════ REASONS 21–25 ═══════════════════════ -->
+<div class="section">
+  <p class="section-label">Part Three</p>
+  <h2 class="section-title">My Promises & My Heart</h2>
+
+  <div class="reason-card" data-reason="21">
+    <span class="reason-number">21</span>
+    <p class="reason-text">If we're doing this, there needs to be a conversation between us about boundaries, intentions, and expectations. I want us to be clear. I want us to be safe. I want us to be deliberate. Not because it kills the romance — but because it protects it.</p>
+  </div>
+  <div class="reason-card" data-reason="22">
+    <span class="reason-number">22</span>
+    <p class="reason-text">I promise to stay in the room when things get hard. To talk even when I'm angry. To never use silence as a weapon. To choose curiosity over defensiveness. To forgive fully and not hold the past over your head. Long-term relationships come with a lot of forgiveness. Don't think you're about to have three perfect years with someone. We all have flaws and toxic traits — so find someone you can grow and become better with. I want that someone to be you. And I want to be that someone for you.</p>
+  </div>
+  <div class="reason-card" data-reason="23">
+    <span class="reason-number">23</span>
+    <p class="reason-text">For us to prosper, we must deliberately and consistently assume benevolent intent in actions, and ignorance — rather than malice — in omissions. I will lead with love. I will lead with questions. I promise to still have a crush on you on a random Tuesday. Still reach for your hand. Still light up when you walk in. Love isn't just a feeling. It's a decision. Choose me, keep choosing me, and I'll keep choosing you.</p>
+  </div>
+  <div class="reason-card" data-reason="24">
+    <span class="reason-number">24</span>
+    <p class="reason-text">See me, Precious. Not just what I do, but what it costs me to do it. I don't need a parade. I just need to feel like you notice. Because a man who feels seen will move mountains. Just remind me sometimes that my best is enough.</p>
+  </div>
+  <div class="reason-card" data-reason="25">
+    <span class="reason-number">25</span>
+    <p class="reason-text">Make me feel safe. I'm an overthinker, and reassurance isn't a luxury for me — it's a need. Sometimes all it takes is "I'm not going anywhere" and then living like you mean it. Love makes me happy, but safety makes me stay. Give me both.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════ FEATURED #26 ═══════════════════════ -->
+<div class="reason-featured" data-reason="26">
+  <div class="featured-img"><img src="photos/precious_01.jpeg" alt="Precious — close-up smile"></div>
+  <div class="featured-text">
+    <span class="feat-num">Reason #26</span>
+    <h3>Your face is a garden</h3>
+    <p>And I'm its loyal gardener. That hasn't changed. It won't. Every time you smile, something in me grows. I don't know what you did to me, Precious, but I don't want the antidote.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════ REASONS 27–30 ═══════════════════════ -->
+<div class="section">
+  <div class="reason-card" data-reason="27">
+    <span class="reason-number">27</span>
+    <p class="reason-text">I want a partner, not an audience. Notice my effort. Match it. Let's build this together. Equally. As a team. Be everything with me. My best friend, my playmate, my partner in every argument we'll ever have, my protector. We talk like we can't shut up, play like we never grew up, argue like an old married couple, and have each other's backs like nothing could come between us. That's the dream.</p>
+  </div>
+  <div class="reason-card" data-reason="28">
+    <span class="reason-number">28</span>
+    <p class="reason-text">I've thought about you more than my thesis. I've smiled at my phone because of you more times than I'll ever admit. I've prayed about you. Specifically. By name. I've imagined our first hug and I already know I won't let go first.</p>
+  </div>
+  <div class="reason-card" data-reason="29">
+    <span class="reason-number">29</span>
+    <p class="reason-text">You are the song engraved in my heart, and I want to sing you every single moment, forever.</p>
+  </div>
+  <div class="reason-card" data-reason="30">
+    <span class="reason-number">30</span>
+    <p class="reason-text">I like you. But I'm willing to lose you. What I feel may be irrational. Staying is not. I chose this. Deliberately. I intend to stay. But if you make a fool of me, I'll leave. Desire brought me to you, but choice keeps me here. And choice can take me away. So you decide. I already have.</p>
+  </div>
+</div>
+
+<!-- PHOTO GRID BOTTOM -->
+<div class="photo-grid">
+  <img src="photos/precious_05.jpeg" alt="Us on FaceTime">
+  <img src="photos/precious_06.jpeg" alt="Us on FaceTime — laughing">
+  <img src="photos/precious_10.jpeg" alt="Precious — thoughtful">
+  <img src="photos/precious_11.jpeg" alt="Precious — headscarf, smiling">
+</div>
+
+<!-- ═══════════════════════ REASON #31 — THE FINAL ONE ═══════════════════════ -->
+<div class="section">
+  <div class="reason-card" data-reason="31" style="border-color:var(--gold); background:var(--bg-elevated);">
+    <span class="reason-number" style="opacity:0.25; font-size:3rem;">31</span>
+    <p class="reason-text" style="font-size:1.15rem;">
+      <strong style="color:var(--gold); font-family:'Playfair Display',serif;">Reason #31 — The only one that matters.</strong><br><br>
+      Because I love you, Precious Oluwaseun. Simply. Completely. Deliberately. Today, tomorrow, and every day after that. Because you are not just someone I like. You are someone I would show up for. Someone I would be patient for. Someone I would cross distances for, rearrange things for, choose deliberately and consistently for. Not out of desperation, but out of something that feels very much like knowing. I don't care how long it takes. I want it to be you. Only you.
+    </p>
+  </div>
+</div>
+
+<!-- ═══════════════════════ LETTER ═══════════════════════ -->
+<div class="section">
+  <div class="letter-block">
+    <div class="salutation">My Precious,</div>
+    <p>One month. 31 days. That's all it took for you to become the first person I think about in the morning and the last thought before I sleep. That's all it took for me to know.</p>
+    <p>The thing nobody tells you about real love is that it isn't the butterflies that hold it together. It's someone who is still gentle with you on a hard day. Still considerate when the newness has settled into routine. Still choosing you, quietly, consistently, without applause. That's what I want to give you. Every single day.</p>
+    <p>We've already done the hardest part — finding each other in a world full of millions.<br>
+    Now let's do the easiest thing — to never let go, to never lose what we've found.</p>
+    <p>I'm choosing you over everybody. Even on the days we don't understand each other, even on the hard days and the quiet days and the days that don't make sense. I still won't play about you. Not even a little.</p>
+    <div class="signature">Yours, always — Olamide</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ VIDEOS ═══════════════════════ -->
+<div class="video-section">
+  <p class="section-label">Our Moments</p>
+  <h2 class="section-title" style="margin-bottom:1.5rem;">Videos</h2>
+
+  <div class="video-slot">
+    <video controls playsinline preload="metadata">
+      <source src="videos/video_01.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="video-slot">
+    <video controls playsinline preload="metadata">
+      <source src="videos/video_02.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="video-slot">
+    <video controls playsinline preload="metadata">
+      <source src="videos/video_03.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="video-slot">
+    <video controls playsinline preload="metadata">
+      <source src="videos/video_04.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="video-slot">
+    <video controls playsinline preload="metadata">
+      <source src="videos/video_05.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="video-slot">
+    <video controls playsinline preload="metadata">
+      <source src="videos/video_06.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="video-slot">
+    <video controls playsinline preload="metadata">
+      <source src="videos/video_07.mp4" type="video/mp4">
+    </video>
+  </div>
+</div>
+
+<!-- ═══════════════════════ REMAINING PHOTOS ═══════════════════════ -->
+<div class="photo-grid">
+  <img src="photos/precious_04.jpeg" alt="Precious — Thursday as usual">
+  <img src="photos/precious_19.jpeg" alt="Precious — a nuu weeeek">
+</div>
+
+<!-- ═══════════════════════ PLAYLIST ═══════════════════════ -->
+<div class="playlist-section">
+  <p class="playlist-title">The Soundtrack of Us</p>
+  <div style="border-radius:12px; overflow:hidden; margin-bottom:1.5rem;">
+    <iframe width="100%" height="315" src="https://www.youtube-nocookie.com/embed/p5UU_4oee5w?si=dIUN-YBznRmX7Wdv" title="The Soundtrack of Us" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:12px;"></iframe>
+  </div>
+
+  <p class="playlist-title" style="margin-top:2rem;">Our Playlist</p>
+  <div style="border-radius:12px; overflow:hidden;">
+    <iframe width="100%" height="400" src="https://www.youtube-nocookie.com/embed/videoseries?si=e2NoSZXijwDVS6FA&amp;list=PLqtmXbtVYwV_E_rMih2yldZTgzTTPO_mN" title="Our Playlist" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:12px;"></iframe>
+  </div>
+</div>
+
+<!-- ═══════════════════════ FINALE ═══════════════════════ -->
+<section class="finale">
+  <div class="heart">&#9829;</div>
+  <h2>Will You Be Mine?</h2>
+  <p>We've already done the hardest part — finding each other in a world full of millions.<br>
+  Now let's do the easiest thing — to never let go.</p>
+  <p style="font-size:0.95rem; opacity:0.6; max-width:400px;">
+    I don't care how long it takes.<br>I want it to be you. Only you.
+  </p>
+  <p class="sign-off">Yours, always — Olamide &#9829;</p>
+  <p class="fine-print">
+    31 reasons. 19 photos. 7 videos. One woman. One choice.<br>
+    7 March — 7 April 2026. Month one of forever.<br><br>
+    Every reason on this page was written with you in mind.
+  </p>
+</section>
+
+<!-- ═══════════════════════ JS ═══════════════════════ -->
+<script>
+// Background music toggle
+let musicPlaying = false;
+const musicBtn = document.getElementById('music-btn');
+const bgMusic = document.getElementById('bg-music');
+const musicPlayer = document.getElementById('music-player');
+const musicSrc = 'https://www.youtube-nocookie.com/embed/p5UU_4oee5w?si=dIUN-YBznRmX7Wdv&autoplay=1&loop=1';
+
+function toggleMusic() {
+  if (!musicPlaying) {
+    bgMusic.src = musicSrc;
+    musicPlayer.classList.add('visible');
+    musicBtn.innerHTML = '&#9835; Hide Player';
+    musicBtn.classList.add('playing');
+    musicPlaying = true;
+  } else {
+    bgMusic.src = '';
+    musicPlayer.classList.remove('visible');
+    musicBtn.innerHTML = '&#9835; Play Music';
+    musicBtn.classList.remove('playing');
+    musicPlaying = false;
+  }
+}
+
+const counter = document.getElementById('counter');
+const cards = document.querySelectorAll('[data-reason]');
+const positions = [];
+function cache() {
+  positions.length = 0;
+  cards.forEach(c => { positions.push({ top: c.getBoundingClientRect().top + window.scrollY, num: c.dataset.reason }); });
+}
+window.addEventListener('load', cache);
+window.addEventListener('resize', cache);
+let ticking = false;
+window.addEventListener('scroll', () => {
+  if (!ticking) {
+    requestAnimationFrame(() => {
+      const y = window.scrollY + window.innerHeight * 0.5;
+      let current = '1';
+      for (let i = positions.length - 1; i >= 0; i--) {
+        if (y >= positions[i].top) { current = positions[i].num; break; }
+      }
+      if (y > 500) { counter.classList.add('visible'); counter.textContent = 'Reason ' + current + ' of 31'; }
+      else { counter.classList.remove('visible'); }
+      ticking = false;
+    });
+    ticking = true;
+  }
+});
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)'; } });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reason-card, .reason-featured, .poem-block').forEach(el => {
+  el.style.opacity = '0'; el.style.transform = 'translateY(15px)'; el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+  obs.observe(el);
+});
+</script>
+
+</body>
+</html>
